@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.practicum.client.*;
 import ru.practicum.dto.HitDto;
 import ru.practicum.dto.StatsDto;
 import ru.yandex.practicum.ewm.service.StatsService;
@@ -21,7 +22,7 @@ public class StatController {
     private final StatsService statsService;
 
     @PostMapping("/hit")
-    public ResponseEntity<String> saveHit(@RequestBody @Valid HitDto hitDto) {
+    public ResponseEntity<String> save(@RequestBody @Valid HitDto hitDto) {
         statsService.save(hitDto);
 
         return ResponseEntity
@@ -38,4 +39,5 @@ public class StatController {
     ) {
         return statsService.getStats(start, end, uris, unique);
     }
+
 }
