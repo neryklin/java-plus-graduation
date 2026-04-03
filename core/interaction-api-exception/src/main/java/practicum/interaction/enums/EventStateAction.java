@@ -1,0 +1,6 @@
+package practicum.interaction.enums;
+
+public enum EventStateAction {
+    PUBLISH_EVENT,
+    REJECT_EVENT
+}

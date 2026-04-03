@@ -16,11 +16,8 @@ import ru.practicum.dto.StatsDto;
 import ru.yandex.practicum.ewm.category.model.Category;
 import ru.yandex.practicum.ewm.category.model.QCategory;
 import ru.yandex.practicum.ewm.category.storage.CategoryRepository;
-import ru.yandex.practicum.ewm.event.dto.*;
 import ru.yandex.practicum.ewm.event.mapper.EventMapper;
-import ru.yandex.practicum.ewm.event.model.*;
 import ru.yandex.practicum.ewm.event.storage.EventRepository;
-import ru.yandex.practicum.ewm.exception.*;
 
 import ru.yandex.practicum.ewm.request.dto.RequestEventDto;
 import ru.yandex.practicum.ewm.request.mapper.RequestMapper;
@@ -34,7 +31,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
-
 
 
 @Service
