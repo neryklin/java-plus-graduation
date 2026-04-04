@@ -1,5 +1,8 @@
 package practicum.comment.mapper;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import lombok.experimental.UtilityClass;
 import org.springframework.stereotype.Component;
 import practicum.comment.dto.EventFullDto;
 import practicum.comment.model.Comment;
@@ -8,6 +11,7 @@ import practicum.interaction.dto.*;
 import java.time.LocalDateTime;
 
 @Component
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CommentMapper {
 
     public static CommentDtoResponse toCommentDtoResponse(Comment comment, UserRequestDto user, EventFullDto event) {

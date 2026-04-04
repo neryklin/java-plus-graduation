@@ -1,6 +1,9 @@
 package practicum.event.event.mapper;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
+import lombok.experimental.UtilityClass;
 import org.springframework.stereotype.Component;
 import practicum.event.category.model.Category;
 import practicum.event.event.dto.EventCreateDto;
@@ -18,7 +21,7 @@ import practicum.interaction.enums.EventStateAction;
 import practicum.interaction.enums.EventUserStateAction;
 
 @Component
-@RequiredArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class EventMapper {
 
     public EventFullDto toEventFullDto(Event event, UserRequestDto user) {

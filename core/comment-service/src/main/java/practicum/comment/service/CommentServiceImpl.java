@@ -9,6 +9,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import practicum.comment.client.EventClient;
 import practicum.comment.client.UserClient;
 import practicum.comment.dto.EventFullDto;
@@ -38,6 +39,7 @@ public class CommentServiceImpl implements CommentService {
     final CommentMapper commentMapper;
 
     @Override
+    @Transactional
     public CommentDtoResponse create(Long userId, Long eventId, CommentDtoRequest dto) {
         EventFullDto event = getPublishedEvent(eventId);
         UserRequestDto user = getUser(userId);
@@ -46,6 +48,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    @Transactional
     public CommentDtoResponse update(Long userId, Long eventId, Long commId, CommentDtoRequest dto) {
         EventFullDto event = getPublishedEvent(eventId);
         Comment comment = getValidComment(userId, eventId, commId);
@@ -56,6 +59,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    @Transactional
     public void delete(Long userId, Long eventId, Long commId) {
         getValidComment(userId, eventId, commId);
         commentRepository.deleteById(commId);
@@ -116,6 +120,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
+    @Transactional
     public void delete(Long commId) {
         if (!commentRepository.existsById(commId)) {
             throw new CommentNotFoundException(commId);

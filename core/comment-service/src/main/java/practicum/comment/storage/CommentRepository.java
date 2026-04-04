@@ -7,7 +7,7 @@ import practicum.comment.model.Comment;
 
 import java.util.List;
 
-@Repository
+
 public interface CommentRepository extends JpaRepository<Comment, Long>, QuerydslPredicateExecutor<Comment> {
 
     List<Comment> findAllByEventId(Long eventId);

@@ -8,6 +8,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import practicum.event.category.model.Category;
 import practicum.event.category.model.QCategory;
 import practicum.event.category.storage.CategoryRepository;
@@ -188,6 +189,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    @Transactional
     public EventFullDto update(Long eventId, EventUpdateAdminDto eventDto) {
         Optional<Event> event = getEvent(eventId);
         Optional<Category> category;
@@ -221,6 +223,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    @Transactional
     public EventFullDto updateInt(Long eventId, EventFullDto eventDto) {
         Optional<Event> event = getEvent(eventId);
 
@@ -233,6 +236,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    @Transactional
     public EventFullDto updatePrivate(Long userId, Long eventId, EventUpdateUserDto eventDto) {
         Optional<Event> event = getEvent(eventId);
         UserRequestDto user = getUser(userId);
@@ -260,6 +264,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    @Transactional
     public EventFullDto create(Long userId, EventCreateDto eventDto) {
         UserRequestDto user = getUser(userId);
         Optional<Category> category = categoryRepository.findById(eventDto.getCategory());
@@ -286,6 +291,7 @@ public class EventServiceImpl implements EventService {
     }
 
     @Override
+    @Transactional
     public EventResultRequestStatusDto updateRequestStatusPrivate(Long userId, Long eventId, EventUpdateRequestStatusDto updateDto) {
         Optional<Event> event = getEvent(eventId);
         UserRequestDto user = getUser(userId);

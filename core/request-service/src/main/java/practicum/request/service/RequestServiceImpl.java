@@ -3,6 +3,7 @@ package practicum.request.service;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import practicum.interaction.dto.UserRequestDto;
 import practicum.interaction.enums.EventState;
 import practicum.interaction.enums.RequestStatus;
@@ -76,27 +77,12 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
+    @Transactional
     public RequestDto create(Long userId, Long eventId) {
         log.info("Creating request for user with id: {} and event with id: {}", userId, eventId);
         UserRequestDto user = getUser(userId);
         EventFullDto event = getEvent(eventId);
         validateRequestCreation(user, event);
-//        if (event == null) {
-//            throw new EventNotFoundException(eventId);
-//        }
-//
-//        if (user.getId().equals(event.getInitiator().getId())) {
-//            throw new ConflictException("You cannot register for your own event.");
-//        }
-//
-//        if (!event.getState().equals(EventState.PUBLISHED)) {
-//            throw new ConflictException("You cannot register in an unpublished event.");
-//        }
-//
-//        if (event.getConfirmedRequests().equals(event.getParticipantLimit()) && event.getParticipantLimit() != 0) {
-//            throw new ConflictException("All spots are taken, registration is not possible.");
-//        }
-
         Request request = new Request();
         request.setRequesterId(userId);
         request.setEventId(eventId);
@@ -124,6 +110,7 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
+    @Transactional
     public RequestDto update(Long userId, Long requestId) {
         UserRequestDto user = getUser(userId);
         Request request = requestRepository.findById(requestId)
@@ -135,6 +122,7 @@ public class RequestServiceImpl implements RequestService {
     }
 
     @Override
+    @Transactional
     public Request updateInternal(Request request) {
         return requestRepository.save(request);
     }

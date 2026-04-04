@@ -1,5 +1,8 @@
 package practicum.event.compilation.mapper;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import lombok.experimental.UtilityClass;
 import org.springframework.stereotype.Component;
 import practicum.event.compilation.dto.CompilationCreateDto;
 import practicum.event.compilation.dto.CompilationRequestDto;
@@ -9,6 +12,7 @@ import practicum.event.event.model.Event;
 import java.util.List;
 
 @Component
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CompilationMapper {
     public static Compilation toEntity(CompilationCreateDto compilationCreateDto, List<Event> events) {
         Compilation compilation = new Compilation();

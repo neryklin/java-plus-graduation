@@ -7,7 +7,7 @@ import practicum.event.event.model.Event;
 
 import java.util.Optional;
 
-@Repository
+
 public interface EventRepository extends JpaRepository<Event, Long>, QuerydslPredicateExecutor<Event> {
     Optional<Event> findFirstByCategoryId(Long categoryId);
 }

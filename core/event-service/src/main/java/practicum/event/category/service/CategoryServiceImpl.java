@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import practicum.event.category.dto.CategoryCreateDto;
 import practicum.event.category.dto.CategoryRequestDto;
 import practicum.event.category.mapper.CategoryMapper;
@@ -39,12 +40,14 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Transactional
     public CategoryRequestDto create(CategoryCreateDto categoryCreateDto) {
         return CategoryMapper.toCategoryRequestDto(
                 categoryRepository.save(CategoryMapper.toCategory(categoryCreateDto)));
     }
 
     @Override
+    @Transactional
     public CategoryRequestDto update(CategoryCreateDto categoryCreateDto, Long catId) {
         Category category = getCategoryOrThrow(catId);
         category.setName(categoryCreateDto.getName());
@@ -54,6 +57,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Transactional
     public void delete(Long catId) {
         Category category = getCategoryOrThrow(catId);
         if (eventRepository.findFirstByCategoryId(catId).isPresent()) {

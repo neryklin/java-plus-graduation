@@ -1,5 +1,9 @@
 package practicum.request.mapper;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import lombok.experimental.UtilityClass;
+import org.springframework.stereotype.Component;
 import practicum.interaction.dto.UserRequestDto;
 import practicum.interaction.enums.RequestStatus;
 import practicum.request.dto.RequestDto;
@@ -9,6 +13,8 @@ import practicum.request.model.Request;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
+@Component
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RequestMapper {
     public static Request toRequest(UserRequestDto requester, Event event, RequestStatus status) {
 

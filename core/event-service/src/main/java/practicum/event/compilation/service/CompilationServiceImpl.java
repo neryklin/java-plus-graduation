@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import practicum.event.compilation.dto.CompilationCreateDto;
 import practicum.event.compilation.dto.CompilationRequestDto;
 import practicum.event.compilation.dto.CompilationUpdateDto;
@@ -28,6 +29,7 @@ public class CompilationServiceImpl implements CompilationService {
     private final EventRepository eventRepository;
 
     @Override
+    @Transactional
     public CompilationRequestDto create(CompilationCreateDto compilationCreateDto) {
         if (compilationCreateDto.getPinned() == null) {
             compilationCreateDto.setPinned(false);
@@ -52,6 +54,7 @@ public class CompilationServiceImpl implements CompilationService {
     }
 
     @Override
+    @Transactional
     public CompilationRequestDto update(CompilationUpdateDto compilationUpdateDto, Long compId) {
         Compilation compilation = compilationRepository.findById(compId)
                 .orElseThrow(() -> new CompilationNotFoundException(compId));
@@ -76,6 +79,7 @@ public class CompilationServiceImpl implements CompilationService {
     }
 
     @Override
+    @Transactional
     public void delete(Long compId) {
         compilationRepository.findById(compId)
                 .orElseThrow(() -> new CompilationNotFoundException(compId));

@@ -1,11 +1,15 @@
 package practicum.user.mapper;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import lombok.experimental.UtilityClass;
 import org.springframework.stereotype.Component;
 import practicum.interaction.dto.UserCreateDto;
 import practicum.interaction.dto.UserRequestDto;
 import practicum.user.model.User;
 
 @Component
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UserMapper {
     public static UserRequestDto toUserRequestDto(User user) {
         return new UserRequestDto(

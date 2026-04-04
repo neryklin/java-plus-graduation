@@ -7,6 +7,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import practicum.interaction.dto.UserCreateDto;
 import practicum.interaction.dto.UserRequestDto;
 import practicum.interaction.exception.UserNotFoundException;
@@ -25,12 +26,14 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
+    @Transactional
     public UserRequestDto create(UserCreateDto userCreateDto) {
         log.info("User created: {}", userCreateDto);
         return UserMapper.toUserRequestDto(userRepository.save(UserMapper.toUser(userCreateDto)));
     }
 
     @Override
+    @Transactional
     public void delete(Long userId) {
         userRepository.findById(userId)
                 .orElseThrow(() -> new UserNotFoundException(userId));

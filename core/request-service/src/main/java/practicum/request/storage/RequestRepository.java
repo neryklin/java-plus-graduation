@@ -8,7 +8,7 @@ import practicum.request.model.Request;
 import java.util.List;
 import java.util.Set;
 
-@Repository
+
 public interface RequestRepository extends JpaRepository<Request, Long> {
     List<Request> findAllByRequesterId(Long userId);
 
