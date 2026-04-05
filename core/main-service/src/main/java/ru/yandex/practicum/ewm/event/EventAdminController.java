@@ -26,7 +26,7 @@ public class EventAdminController {
 
     @PatchMapping("/{id}")
     public ResponseEntity<EventFullDto> update(@RequestBody @Valid EventUpdateAdminDto eventUpdateDto,
-                                          @PathVariable("id") Long eventId) {
+                                               @PathVariable("id") Long eventId) {
         log.info("--> PATCH запрос /admin/events/{} с телом {}", eventId, eventUpdateDto);
         EventFullDto event = eventService.update(eventId, eventUpdateDto);
         log.info("<-- PATCH запрос /admin/events/{} вернул ответ: {}", eventId, event);
@@ -42,8 +42,8 @@ public class EventAdminController {
             @RequestParam(required = false) Set<Long> users,
             @RequestParam(required = false) Set<EventState> states,
             @RequestParam(required = false) Set<Long> categories,
-            @RequestParam(required = false)  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeStart,
-            @RequestParam(required = false)  @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeEnd,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeStart,
+            @RequestParam(required = false) @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss") LocalDateTime rangeEnd,
             @RequestParam(required = false, defaultValue = "0") int from,
             @RequestParam(required = false, defaultValue = "10") int size
     ) {

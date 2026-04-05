@@ -93,14 +93,13 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(EventsGetPublicBadRequestException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handleEventsGetBadRequest(EventsGetPublicBadRequestException ex) {
-    return new ErrorResponse(
-            HttpStatus.BAD_REQUEST.name(),
-            "Incorrectly made request.",
-            ex.getMessage(),
-            LocalDateTime.now()
+        return new ErrorResponse(
+                HttpStatus.BAD_REQUEST.name(),
+                "Incorrectly made request.",
+                ex.getMessage(),
+                LocalDateTime.now()
         );
     }
-
 
 
     @ExceptionHandler(CompilationNotFoundException.class)

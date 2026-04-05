@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import ru.yandex.practicum.ewm.event.dto.*;
 import ru.yandex.practicum.ewm.event.model.PrivateEventParams;
 import ru.yandex.practicum.ewm.event.service.EventService;
 import ru.yandex.practicum.ewm.request.dto.RequestEventDto;
@@ -41,7 +40,7 @@ public class EventPrivateController {
 
     @PostMapping("/{userId}/events")
     public ResponseEntity<EventFullDto> create(@PathVariable("userId") Long userId,
-                                            @RequestBody @Valid EventCreateDto eventDto) {
+                                               @RequestBody @Valid EventCreateDto eventDto) {
         log.info("--> POST запрос /users/{}/events с телом {}", userId, eventDto);
         EventFullDto event = eventService.create(userId, eventDto);
         log.info("<-- POST запрос /users/{}/events вернул ответ: {}", userId, event);
@@ -91,8 +90,8 @@ public class EventPrivateController {
 
     @PatchMapping("/{userId}/events/{eventId}/requests")
     public ResponseEntity<EventResultRequestStatusDto> update(@RequestBody @Valid EventUpdateRequestStatusDto updateDto,
-                                               @PathVariable("userId") Long userId,
-                                               @PathVariable("eventId") Long eventId) {
+                                                              @PathVariable("userId") Long userId,
+                                                              @PathVariable("eventId") Long eventId) {
         log.info("--> PATCH запрос /user/{}/events/{}/requests с телом {}", userId, eventId, updateDto);
         EventResultRequestStatusDto result = eventService.updateRequestStatusPrivate(userId, eventId, updateDto);
         log.info("<-- PATCH запрос /user/{}/events/{}/requests вернул ответ: {}", userId, eventId, result);

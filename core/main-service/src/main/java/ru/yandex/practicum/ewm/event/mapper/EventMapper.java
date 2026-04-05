@@ -3,8 +3,6 @@ package ru.yandex.practicum.ewm.event.mapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import ru.yandex.practicum.ewm.category.model.Category;
-import ru.yandex.practicum.ewm.event.dto.*;
-import ru.yandex.practicum.ewm.event.model.*;
 import ru.yandex.practicum.ewm.user.model.User;
 import ru.yandex.practicum.ewm.user.dto.UserShortDto;
 

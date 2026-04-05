@@ -17,7 +17,6 @@ import ru.yandex.practicum.ewm.comment.storage.CommentRepository;
 import ru.yandex.practicum.ewm.event.model.Event;
 import ru.yandex.practicum.ewm.event.model.EventState;
 import ru.yandex.practicum.ewm.event.storage.EventRepository;
-import ru.yandex.practicum.ewm.exception.*;
 import ru.yandex.practicum.ewm.user.model.User;
 import ru.yandex.practicum.ewm.user.storage.UserRepository;
 

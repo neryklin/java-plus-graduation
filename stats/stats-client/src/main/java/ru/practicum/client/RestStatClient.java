@@ -44,7 +44,7 @@ public class RestStatClient {
         return status != HttpStatus.CREATED;
     }
 
-      private void handleError(HttpRequest request, ClientHttpResponse response) throws IOException {
+    private void handleError(HttpRequest request, ClientHttpResponse response) throws IOException {
         throw new RuntimeException("Не удалось сохранить Hit: " + response.getStatusCode());
     }
 
@@ -64,9 +64,9 @@ public class RestStatClient {
                 .queryParam("start", start)
                 .queryParam("end", end)
                 .queryParam("unique", unique);
-         if (uris != null && !uris.isEmpty()) {
+        if (uris != null && !uris.isEmpty()) {
             builder.queryParam("uris", String.join(",", uris));
-          }
+        }
         String url = builder.build().toUriString();
 
 

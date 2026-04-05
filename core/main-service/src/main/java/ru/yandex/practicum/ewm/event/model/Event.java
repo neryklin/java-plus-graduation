@@ -16,39 +16,29 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "events")
 public class Event {
+    @Column(name = "location_lat")
+    public Float lat;
+    @Column(name = "location_lon")
+    public Float lon;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @Column(name = "annotation", nullable = false, length = 2000)
     private String annotation;
-
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-
     @Column(name = "confirmed_requests")
     private Integer confirmedRequests;
-
     @Column(name = "created")
     private LocalDateTime createdOn;
-
     @Column(name = "description", length = 7000)
     private String description;
-
     @Column(name = "event_date", nullable = false)
     private LocalDateTime eventDate;
-
     @ManyToOne
     @JoinColumn(name = "initiator_id")
     private User initiator;
-
-    @Column(name = "location_lat")
-    public Float lat;
-
-    @Column(name = "location_lon")
-    public Float lon;
-
     @Column(name = "paid", nullable = false)
     @ColumnDefault("false")
     private Boolean paid;
