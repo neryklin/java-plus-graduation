@@ -3,6 +3,7 @@ package ru.practicum.service.recommendation;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import ru.practicum.grpc.stats.recommendation.InteractionsCountRequestProto;
@@ -14,6 +15,10 @@ import ru.practicum.model.EventSimilarity;
 import ru.practicum.model.UserAction;
 import ru.practicum.repository.EventSimilarityRepository;
 import ru.practicum.repository.UserActionRepository;
+import ru.practicum.service.eventSimilarity.EventSimilarityServiceImpl;
+import ru.practicum.service.userAction.UserActionService;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -23,6 +28,8 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class RecommendationServiceImpl implements RecommendationService {
     private final EventSimilarityRepository eventSimilarityRepository;
+    private final EventSimilarityServiceImpl eventSimilarityService;
+    private final UserActionService userActionService;
     private final UserActionRepository userActionRepository;
 
     private RecommendedEventProto newRecommendedEvent(Long eventId, Double scores) {
@@ -58,11 +65,10 @@ public class RecommendationServiceImpl implements RecommendationService {
         if (userEvents.isEmpty()) {
             return Collections.emptyList();
         }
-        List<EventSimilarity> recommendationsForUser = new ArrayList<>();
-        for (Long eventId : userEvents) {
-            recommendationsForUser.addAll(eventSimilarityRepository.findAllByEventXOrEventY(eventId, eventId));
-        }
-        return recommendationsForUser.stream()
+        Set<Long> userEventIds = new HashSet<>(userActionService.findSortedEventIdsOfUser(request.getUserId(),
+                maxResults));
+        List<EventSimilarity> similarities = eventSimilarityService.findAllPairSimilarEvents(userEventIds, maxResults);
+        return similarities.stream()
                 .distinct()
                 .filter(s -> (fullEvents.contains(s.getEventX()) ^ fullEvents.contains(s.getEventY())))
                 .sorted(Comparator.comparing(EventSimilarity::getScore).reversed())
