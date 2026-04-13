@@ -2,7 +2,6 @@ package practicum.user.mapper;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import lombok.experimental.UtilityClass;
 import org.springframework.stereotype.Component;
 import practicum.interaction.dto.UserCreateDto;
 import practicum.interaction.dto.UserRequestDto;

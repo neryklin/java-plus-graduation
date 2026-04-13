@@ -2,7 +2,6 @@ package practicum.event.category.mapper;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import lombok.experimental.UtilityClass;
 import org.springframework.stereotype.Component;
 import practicum.event.category.dto.CategoryCreateDto;
 import practicum.event.category.dto.CategoryRequestDto;

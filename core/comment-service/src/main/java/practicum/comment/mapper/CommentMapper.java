@@ -2,7 +2,6 @@ package practicum.comment.mapper;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import lombok.experimental.UtilityClass;
 import org.springframework.stereotype.Component;
 import practicum.comment.dto.EventFullDto;
 import practicum.comment.model.Comment;
