@@ -2,7 +2,6 @@ package practicum.event.request.mapper;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import lombok.experimental.UtilityClass;
 import org.springframework.stereotype.Component;
 import practicum.event.event.model.Event;
 import practicum.event.request.dto.RequestDto;

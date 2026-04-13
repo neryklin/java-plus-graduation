@@ -66,10 +66,10 @@ public class RequestServiceImpl implements RequestService {
         return user;
     }
 
-    private EventFullDto getEvent(Long EventFullDto) {
+    private EventFullDto getEvent(Long userId, Long eventId) {
         EventFullDto event;
         try {
-            event = eventClient.getById(EventFullDto);
+            event = eventClient.getById(userId, eventId);
         } catch (Exception e) {
             throw new ConflictException("You cannot register in an unpublished event.");
         }
@@ -81,7 +81,7 @@ public class RequestServiceImpl implements RequestService {
     public RequestDto create(Long userId, Long eventId) {
         log.info("Creating request for user with id: {} and event with id: {}", userId, eventId);
         UserRequestDto user = getUser(userId);
-        EventFullDto event = getEvent(eventId);
+        EventFullDto event = getEvent(userId, eventId);
         validateRequestCreation(user, event);
         Request request = new Request();
         request.setRequesterId(userId);

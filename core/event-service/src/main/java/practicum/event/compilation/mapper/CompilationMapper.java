@@ -2,7 +2,6 @@ package practicum.event.compilation.mapper;
 
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import lombok.experimental.UtilityClass;
 import org.springframework.stereotype.Component;
 import practicum.event.compilation.dto.CompilationCreateDto;
 import practicum.event.compilation.dto.CompilationRequestDto;
